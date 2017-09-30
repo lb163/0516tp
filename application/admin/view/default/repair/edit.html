@@ -1,0 +1,56 @@
+{extend name="public/base" /}
+
+{block name="body"}
+	<div class="main">
+		<h2>
+			{$info['id']?'编辑':'新增'}导航
+			{notempty name="pid">
+				[&nbsp;父导航：<a href="{:url('index','pid='.$pid)}">{$parent}</a>&nbsp;]
+			{/notempty}
+		</h2>
+	</div>
+	<form action="{:url()}" method="post" class="form-horizontal">
+		<div class="form-item">
+			<label class="item-label">姓名<span class="check-tips"></span></label>
+			<div class="controls">
+				<input type="text" class="text input-large" name="username" value="{$info.username|default=''}">
+			</div>
+		</div>
+		<div class="form-item">
+			<label class="item-label">电话号码<span class="check-tips"></span></label>
+			<div class="controls">
+				<input type="text" class="text input-large" name="tel" value="{$info.tel|default=''}">
+			</div>
+		</div>
+		<div class="form-item">
+			<label class="item-label">地址<span class="check-tips"></span></label>
+			<div class="controls">
+				<input type="text" class="text input-large" name="city" value="{$info.city|default=''}">
+			</div>
+		</div>
+		<div class="form-item">
+			<label class="item-label">标题<span class="check-tips"></span></label>
+			<div class="controls">
+				<input type="text" class="text input-large" name="tro" value="{$info.tro|default=''}">
+			</div>
+		</div>
+		<div class="form-item">
+			<label class="item-label">内容<span class="check-tips"></span></label>
+			<div class="controls">
+				<input type="text" class="text input-large" name="content" value="{$info.content|default=''}">
+			</div>
+		</div>
+		</div>
+		<div class="form-item">
+			<input type="hidden" name="id" value="{$info.id|default=''}">
+			<button class="btn submit-btn ajax-posts" id="submit" type="submit" target-form="form-horizontal">确 定</button>
+			<button class="btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+		</div>
+	</form>
+{/block}
+{block name="script"}
+<script type="text/javascript" charset="utf-8">
+	//导航高亮
+	highlight_subnav('{:url('index')}');
+</script>
+{/block}
